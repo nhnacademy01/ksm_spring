@@ -7,10 +7,10 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Money {
-    private final String currency;
-    private BigDecimal amount;
+    private final Currency currency;
+    private final BigDecimal amount;
 
-    public Money(BigDecimal amount, String currency) throws NegativeException {
+    public Money(BigDecimal amount, Currency currency) throws NegativeException {
         if (isSmallerThan(amount)) {
             throw new NegativeException("Number is negative");
         }
@@ -19,10 +19,10 @@ public class Money {
     }
 
     public Money add(Money money) throws NegativeException, DifferentCurrencyException {
-        if (isEqualCurrency(money)) {
+        if (isDifferentCurrency(money)) {
             throw new DifferentCurrencyException("different currency");
         }
-        return new Money(this.amount.add(money.getAmount()), "dollar");
+        return new Money(this.amount.add(money.getAmount()), this.currency);
     }
 
     public void sub(Money money) throws ImpossibleSubtractException {
@@ -40,7 +40,7 @@ public class Money {
         return this.amount.compareTo(money.getAmount()) == -1;
     }
 
-    private boolean isEqualCurrency(Money money) {
+    private boolean isDifferentCurrency(Money money) {
         return !(this.currency.equals(money.getCurrency()));
     }
 
@@ -48,13 +48,8 @@ public class Money {
         return this.amount;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
     @Override
@@ -62,10 +57,15 @@ public class Money {
         if (this == o) {
             return true;
         }
-        if (o == null) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         Money money = (Money) o;
-        return Objects.equals(amount, money.getAmount());
+        return currency.equals(money.currency) && amount.equals(money.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(currency, amount);
     }
 }

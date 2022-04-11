@@ -6,15 +6,16 @@ import java.math.RoundingMode;
 
 public class ExchangeService {
     public Money exchange(Money money) throws NegativeException {
-        if (money.getCurrency().equals("dollar")) {
+        if (money.getCurrency().equals(new Currency("dollar",BigDecimal.valueOf(10_000L)))) {
+            BigDecimal rate = money.getCurrency().getRate();
             BigDecimal exchangeAmt =
-                money.getAmount().multiply(BigDecimal.valueOf(1_000)).setScale(0);
-            return new Money(roundsExchangeAmt(exchangeAmt), "won");
+                money.getAmount().multiply(rate).setScale(0);
+            return new Money(roundsExchangeAmt(exchangeAmt), new Currency("won"));
         }
-        if (money.getCurrency().equals("won")) {
+        if (money.getCurrency().equals(new Currency("won"))) {
             BigDecimal exchangeAmt = money.getAmount().divide(BigDecimal.valueOf(1_000));
             exchangeAmt = exchangeAmt.setScale(2, RoundingMode.HALF_UP);
-            return new Money(setScaleZeroWhenInt(exchangeAmt), "dollar");
+            return new Money(setScaleZeroWhenInt(exchangeAmt), new Currency("dollar",BigDecimal.valueOf(1_000L)));
         }
         return null;
     }
