@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- annotation설정을 위해 추가-->
+    <context:annotation-config/>
+
+    <bean id="exchangeService"
+          class="com.nhnacademy.bank.domain.ExchangeService">
+        <qualifier type="com.nhnacademy.bank.annotation.Exchange"/>
+    </bean>
+
+    <bean id="depositService"
+          class="com.nhnacademy.bank.domain.DepositService">
+        <qualifier type="com.nhnacademy.bank.annotation.Deposit"/>
+    </bean>
+
+    <bean id="withdrawService"
+          class="com.nhnacademy.bank.domain.WithdrawService">
+        <qualifier type="com.nhnacademy.bank.annotation.Withdraw"/>
+    </bean>
+
+    <bean id="bank"
+          class="com.nhnacademy.bank.domain.Bank">
+        <property name="withdrawService" ref="withdrawService"/>
+    </bean>
+
+</beans>
