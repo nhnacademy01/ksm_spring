@@ -13,12 +13,11 @@
 
     <bean id="exchangeService"
           class="com.nhnacademy.bank.domain.ExchangeService">
-
+        <qualifier type="com.nhnacademy.bank.annotation.Exchange"/>
     </bean>
 
     <bean id="bank"
           class="com.nhnacademy.bank.domain.Bank">
-        <constructor-arg ref="exchangeService"/>
     </bean>
 
 </beans>
