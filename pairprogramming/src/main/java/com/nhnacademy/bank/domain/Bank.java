@@ -12,8 +12,8 @@ public class Bank {
         this.exchangeService = exchangeService;
     }
 
-    public Money doExchange(Money money) throws NegativeException {
-        return exchangeService.exchange(money);
+    public Money doExchange(Money money, Currency currency) throws NegativeException {
+        return exchangeService.exchange(money, currency);
     }
 }
 

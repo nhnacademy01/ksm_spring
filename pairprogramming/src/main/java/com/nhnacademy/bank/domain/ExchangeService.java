@@ -5,19 +5,22 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class ExchangeService {
-    public Money exchange(Money money) throws NegativeException {
-        if (money.getCurrency().equals(new Currency("dollar",BigDecimal.valueOf(10_000L)))) {
+    public Money exchange(Money money, Currency currency) throws NegativeException {
+        if(money==null||currency==null){
+            throw new IllegalArgumentException("null");
+        }
+        if (money.getCurrency().equals(new Currency("won"))) {
+            BigDecimal foreignRate = currency.getRate();
+            BigDecimal exchangeAmt = money.getAmount().divide(foreignRate);
+            exchangeAmt = exchangeAmt.setScale(2, RoundingMode.HALF_UP);
+            return new Money(setScaleZeroWhenInt(exchangeAmt), currency);
+        }
+        else {
             BigDecimal rate = money.getCurrency().getRate();
             BigDecimal exchangeAmt =
                 money.getAmount().multiply(rate).setScale(0);
             return new Money(roundsExchangeAmt(exchangeAmt), new Currency("won"));
         }
-        if (money.getCurrency().equals(new Currency("won"))) {
-            BigDecimal exchangeAmt = money.getAmount().divide(BigDecimal.valueOf(1_000));
-            exchangeAmt = exchangeAmt.setScale(2, RoundingMode.HALF_UP);
-            return new Money(setScaleZeroWhenInt(exchangeAmt), new Currency("dollar",BigDecimal.valueOf(1_000L)));
-        }
-        return null;
     }
 
     int checkExchangeAmt(BigDecimal exchangeAmt) {
