@@ -12,22 +12,22 @@
     <context:annotation-config/>
 
     <bean id="exchangeService"
-          class="com.nhnacademy.bank.domain.ExchangeService">
+          class="com.nhnacademy.bank.service.ExchangeService">
         <qualifier type="com.nhnacademy.bank.annotation.Exchange"/>
     </bean>
 
     <bean id="depositService"
-          class="com.nhnacademy.bank.domain.DepositService">
+          class="com.nhnacademy.bank.service.DepositService">
         <qualifier type="com.nhnacademy.bank.annotation.Deposit"/>
     </bean>
 
     <bean id="withdrawService"
-          class="com.nhnacademy.bank.domain.WithdrawService">
+          class="com.nhnacademy.bank.service.WithdrawService">
         <qualifier type="com.nhnacademy.bank.annotation.Withdraw"/>
     </bean>
 
     <bean id="bank"
-          class="com.nhnacademy.bank.domain.Bank">
+          class="com.nhnacademy.bank.service.BankService">
         <property name="withdrawService" ref="withdrawService"/>
     </bean>
 

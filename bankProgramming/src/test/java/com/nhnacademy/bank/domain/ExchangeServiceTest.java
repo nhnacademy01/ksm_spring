@@ -4,6 +4,7 @@ package com.nhnacademy.bank.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.nhnacademy.bank.exception.NegativeException;
+import com.nhnacademy.bank.service.ExchangeService;
 import java.math.BigDecimal;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

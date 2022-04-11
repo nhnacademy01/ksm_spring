@@ -1,5 +1,7 @@
-package com.nhnacademy.bank.domain;
+package com.nhnacademy.bank.service;
 
+import com.nhnacademy.bank.domain.Currency;
+import com.nhnacademy.bank.domain.Money;
 import com.nhnacademy.bank.exception.NegativeException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;

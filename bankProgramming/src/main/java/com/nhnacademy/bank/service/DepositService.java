@@ -1,4 +1,7 @@
-package com.nhnacademy.bank.domain;
+package com.nhnacademy.bank.service;
+
+import com.nhnacademy.bank.domain.Account;
+import com.nhnacademy.bank.domain.Money;
 
 public class DepositService {
     void deposit(Account account, Money money){
