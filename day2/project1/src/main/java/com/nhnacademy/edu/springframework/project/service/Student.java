@@ -2,7 +2,7 @@ package com.nhnacademy.edu.springframework.project.service;
 
 import com.nhnacademy.edu.springframework.project.repository.Score;
 
-public class Student {
+public class Student{
     private final int seq;
     private final String name;
     private Score score;
@@ -14,6 +14,14 @@ public class Student {
 
     public void setScore(Score score) {
         this.score = score;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

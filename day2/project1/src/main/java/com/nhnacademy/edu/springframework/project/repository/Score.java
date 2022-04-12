@@ -1,6 +1,6 @@
 package com.nhnacademy.edu.springframework.project.repository;
 
-public class Score {
+public class Score{
     private final int studentSeq;
     private final int score;
 
