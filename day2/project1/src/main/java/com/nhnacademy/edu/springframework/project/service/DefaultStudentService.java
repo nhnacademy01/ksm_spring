@@ -9,6 +9,7 @@ public class DefaultStudentService implements StudentService {
     @Override
     public Collection<Student> getPassedStudents() {
         Students studentRepository = CsvStudents.getInstance();
+        System.out.println(CsvStudents.getInstance());
         // TODO 1 : pass 한 학생만 반환하도록 수정하세요.
         return studentRepository.findAll();
     }

@@ -11,8 +11,9 @@ public class CsvDataLoadService implements DataLoadService {
         Scores scores = CsvScores.getInstance();
         scores.load();
 
-        Students students = CsvStudents.getInstance();
-        students.load();
-        students.merge(scores.findAll());
+        //TODO
+//        Students students = CsvStudents.getInstance();
+//        students.load();
+//        students.merge(scores.findAll());
     }
 }

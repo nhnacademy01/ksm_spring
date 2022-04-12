@@ -1,9 +1,12 @@
 package com.nhnacademy.edu.springframework.project.repository;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +29,11 @@ public class CsvScores implements Scores {
     // TODO 5 : score.csv 파일에서 데이터를 읽어 scores 에 추가하는 로직을 구현하세요.
     @Override
     public void load() {
-
+        try(FileInputStream scoreFileIn = new FileInputStream("D:\\NHN_Academy\\lectureSpring\\day2\\project1\\src\\main\\resources\\data\\score.csv")) {
+            System.out.println(scoreFileIn.read());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

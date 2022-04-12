@@ -13,11 +13,12 @@ public class Main {
         DataLoadService dataLoadService = new CsvDataLoadService();
         dataLoadService.loadAndMerge();
 
-        DefaultStudentService studentService = new DefaultStudentService();
-        Collection<Student> passedStudents = studentService.getPassedStudents();
-        System.out.println(passedStudents);
-
-        Collection<Student> orderedStudents = studentService.getStudentsOrderByScore();
-        System.out.println(orderedStudents);
+        //TODO
+//        DefaultStudentService studentService = new DefaultStudentService();
+//        Collection<Student> passedStudents = studentService.getPassedStudents();
+//        System.out.println(passedStudents);
+//
+//        Collection<Student> orderedStudents = studentService.getStudentsOrderByScore();
+//        System.out.println(orderedStudents);
     }
 }
